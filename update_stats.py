@@ -1,38 +1,34 @@
-import psutil
+import os
 import time
 
-def get_classic_stats():
-    # Attempting Battery - This usually works on Moto G series
+def get_stats():
+    # Use the 'dumpsys' or 'termux-battery' logic indirectly
+    # This command is usually allowed even when psutil is blocked
     try:
-        batt = psutil.sensors_battery()
-        batt_percent = f"{batt.percent}%" if batt else "N/A"
-    except:
-        batt_percent = "Access Denied"
-
-    # Attempting Temp - Using your specific 2.7 -> 27 degree fix
-    try:
-        temps = psutil.sensors_temperatures()
-        if 'battery' in temps:
-            raw_temp = temps['battery'][0].current
-            # Glitch fix: if it says 2.7, make it 27
-            temp_display = f"{raw_temp * 10 if raw_temp < 10 else raw_temp}°C"
+        # We grab the battery info directly from the termux-api bridge
+        raw_batt = os.popen('termux-battery-status').read()
+        if '"percentage"' in raw_batt:
+            # Simple way to find the number without heavy libraries
+            percent = raw_batt.split('"percentage": ')[1].split(',')[0]
+            temp = raw_batt.split('"temperature": ')[1].split(',')[0]
+            # Convert decimal temp (27.5) to clean display
+            display_temp = f"{temp}°C"
+            display_batt = f"{percent}%"
         else:
-            temp_display = "N/A"
+            display_batt = "Wait..."
+            display_temp = "Wait..."
     except:
-        temp_display = "Protected"
+        display_batt = "Locked"
+        display_temp = "Locked"
 
     return f"""
-    <p><strong>Battery:</strong> {batt_percent}</p>
-    <p><strong>Temperature:</strong> {temp_display}</p>
-    <p><small>Updated: {time.strftime('%H:%M:%S')}</small></p>
+    <p><strong>Battery Level:</strong> {display_batt}</p>
+    <p><strong>Thermal Reading:</strong> {display_temp}</p>
+    <p><strong>Node Status:</strong> ONLINE</p>
+    <p><small>Uptime: {time.strftime('%H:%M:%S')}</small></p>
     """
 
-print("Reverting to Classic Mode...")
 while True:
-    try:
-        content = get_classic_stats()
-        with open("stats.html", "w") as f:
-            f.write(content)
-        time.sleep(10)
-    except:
-        time.sleep(10)
+    with open("stats.html", "w") as f:
+        f.write(get_stats())
+    time.sleep(10)
