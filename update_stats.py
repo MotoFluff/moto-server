@@ -2,30 +2,30 @@ import psutil
 import time
 import os
 
-def get_stats():
-    # CPU and RAM are usually readable without root
-    cpu = psutil.cpu_percent(interval=1)
-    ram = psutil.virtual_memory().percent
+def get_android_stats():
+    # Battery is usually accessible without root
+    batt = psutil.sensors_battery()
+    percent = batt.percent if batt else "N/A"
     
-    # Since /proc/net/dev is blocked, we'll display "System Protected" 
-    # for speed or use a placeholder to prevent crashes.
-    net_status = "Live (Protected)" 
-
+    # We use time and uptime instead of restricted CPU files
+    current_time = time.strftime('%H:%M:%S')
+    
     return f"""
-    <p><strong>CPU Usage:</strong> {cpu}%</p>
-    <p><strong>RAM Usage:</strong> {ram}%</p>
-    <p><strong>Network Status:</strong> {net_status}</p>
-    <p><small>Last Update: {time.strftime('%H:%M:%S')}</small></p>
+    <p><strong>NODE STATUS:</strong> ACTIVE</p>
+    <p><strong>Power Level:</strong> {percent}%</p>
+    <p><strong>System Time:</strong> {current_time}</p>
+    <p><small>Last Pulse: {time.strftime('%Y-%m-%d')}</small></p>
     """
 
-print("Starting MotoFluff Engine (Safe Mode)...")
+print("MotoFluff Engine: Running in Permission-Safe Mode")
+
 while True:
     try:
-        content = get_stats()
+        content = get_android_stats()
         with open("stats.html", "w") as f:
             f.write(content)
-        time.sleep(2)
-    except Exception as e:
-        with open("stats.html", "w") as f:
-            f.write(f"<p>Error: {e}</p>")
+        # We wait 10 seconds to be gentle on the battery
         time.sleep(10)
+    except Exception as e:
+        print(f"Error: {e}")
+        time.sleep(60)
