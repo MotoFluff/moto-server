@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moto G15 | Lab</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>MotoFluff Lab Dashboard</title>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
-        .card { background-color: #161b22; border: 2px solid #30363d; border-radius: 15px; }
-        .stat-label { color: #8b949e; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-value { font-family: 'Courier New', monospace; color: #58a6ff; font-size: 1.8rem; font-weight: bold; display: block; }
-        .footer-text { font-size: 0.8rem; color: #484f58; margin-top: 20px; }
-        .status-badge { color: #3fb950; font-weight: bold; border: 1px solid #238636; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f0f; color: #00ff88; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { background: #1a1a1a; border: 2px solid #00ff88; border-radius: 20px; padding: 30px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.2); width: 85%; max-width: 400px; }
+        h1 { margin-top: 0; font-size: 1.8rem; text-align: center; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; }
+        #stats-container { line-height: 2; font-size: 1.2rem; }
+        strong { color: #00e5ff; }
+        .status-dot { height: 10px; width: 10px; background-color: #00ff88; border-radius: 50%; display: inline-block; margin-right: 10px; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
+    <script>
+        function fetchStats() {
+            // The '?t=' + Date.now() forces GitHub to serve the freshest file
+            fetch('stats.html?t=' + Date.now())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('stats-container').innerHTML = data;
+                })
+                .catch(err => {
+                    document.getElementById('stats-container').innerHTML = "Connecting to Moto G15...";
+                });
+        }
+        // Updates every 5 seconds (good balance for GitHub Pages)
+        setInterval(fetchStats, 5000);
+        window.onload = fetchStats;
+    </script>
 </head>
 <body>
-    <div class="container py-5">
-        <div class="row justify-content-center text-center">
-            <div class="col-md-5">
-                <div class="card p-4 shadow-lg">
-                    <div class="mb-3">
-                        <span class="status-badge">● NODE ACTIVE</span>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <span class="stat-label">Power Level</span>
-                        <span class="stat-value">Battery: 66%</span>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <span class="stat-label">Thermal Reading</span>
-                        <span class="stat-value">CPU Temp: 2.7°C</span>
-                    </div>
-
-                    <div class="footer-text border-top border-secondary pt-3">
-                        Last Pulse: Updated: 2026-02-17
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <h1><span class="status-dot"></span>MotoFluff Lab</h1>
+        <div id="stats-container">
+            Loading real-time telemetry...
         </div>
     </div>
 </body>
