@@ -6,136 +6,39 @@
     <title>MotoFluff | Mobile Lab</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .card { background-color: #161b22; border: 1px solid #30363d; color: #f0f6fc; }
-        .status-dot { height: 10px; width: 10px; background-color: #238636; border-radius: 50%; display: inline-block; margin-right: 5px; }
-        .terminal-text { font-family: 'Courier New', Courier, monospace; color: #39ff14; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Inter', sans-serif; }
+        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 12px; }
+        .stat-value { font-family: 'Courier New', Courier, monospace; color: #58a6ff; font-weight: bold; }
+        .footer-text { font-size: 0.8rem; color: #8b949e; }
     </style>
 </head>
 <body>
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg">
-                    <div class="card-header border-bottom border-secondary d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">MotoFluff Lab Dashboard</h4>
-                        <span class="badge bg-success text-dark">Live</span>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm">
+                    <h5 class="mb-4 text-white">Moto G15 Infrastructure</h5>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Battery Level:</span>
+                        <span class="stat-value">Battery: 74%</span>
                     </div>
-                    <div class="card-body">
-                        <p class="lead">Portable ARM-based DevOps Lab running on <strong>Motorola G15</strong>.</p>
-                        <hr class="text-secondary">
-                        <div class="row">
-                            <div class="col-sm-6 mb-3">
-                                <h5>System Environment</h5>
-                                <ul class="list-unstyled">
-                                    <li><span class="status-dot"></span> Battery: 74% (Proot-Distro)</li>
-                                    <li><span class="status-dot"></span> CPU Temp: 2.7°C</li>
-                                    <li><span class="status-dot"></span> Access: SSH Enabled</li>
-                                </ul>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
-                            </div>
-                            <div class="col-sm-6 mb-3">
-                                <h5>Latest Deployment</h5>
-                                <p class="terminal-text small">> git push origin main --success</p>
-                                <p class="text-muted small">Updated: 2026-02-17 12:09</p>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
-                            </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
-                        </div>
-                        <div class="mt-4 p-3 bg-dark rounded border border-secondary text-center">
-                            <p class="mb-0">"The best way to predict the future is to build it on Linux."</p>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
-                        </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                        <span>Thermal Status:</span>
+                        <span class="stat-value">CPU Temp: 2.7°C</span>
                     </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
+
+                    <div class="p-3 bg-dark rounded border border-secondary">
+                        <code class="small text-success">> system status: operational</code>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top border-secondary text-center">
+                        <p class="footer-text mb-0">Updated: 2026-02-17</p>
+                    </div>
                 </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
             </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
         </div>
-<div class="mt-4"> 
-    <h5>Infrastructure Status</h5> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-info" role="progressbar" style="width: 100%">Termux Environment: Active</div> 
-    </div> 
-    <div class="progress mb-2" style="height: 20px;"> 
-        <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: 100%">Automated Sync: Enabled</div> 
-    </div> 
-</div>
     </div>
 </body>
 </html>
